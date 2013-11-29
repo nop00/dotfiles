@@ -1,0 +1,241 @@
+set nocompatible               " be iMproved
+filetype off                   " required!
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+
+"search in files/tags/MRU
+Bundle 'kien/ctrlp.vim'
+"buffer explorer
+Bundle 'techlivezheng/vim-plugin-minibufexpl'
+
+" commenting/uncommenting easily
+Bundle 'scrooloose/nerdcommenter'
+" file explorer
+Bundle 'scrooloose/nerdtree'
+" fancy status bar
+Bundle 'bling/vim-airline'
+" use <tab> (or something else) to control completion
+"Bundle 'tsaleh/vim-supertab'
+" surround stuff with quotes, brackets, etc
+Bundle 'surround.vim'
+" syntax checker
+Bundle 'scrooloose/syntastic'
+
+" ctags stuff
+" Updates entries in a tags file automatically when saving
+Bundle 'AutoTag'
+" display tags for the current file in a sidebar
+Bundle 'Tagbar'
+
+" CSS
+Bundle 'skammer/vim-css-color'
+Bundle 'hail2u/vim-css3-syntax'
+Bundle 'groenewege/vim-less'
+
+" Python
+"Bundle 'davidhalter/jedi-vim'
+
+" Javascript
+Bundle 'jelera/vim-javascript-syntax'
+Bundle 'pangloss/vim-javascript'
+Bundle 'nathanaelkane/vim-indent-guides'
+" javascript completion
+Bundle 'marijnh/tern_for_vim'
+
+" color scheme
+Bundle 'chriskempson/vim-tomorrow-theme'
+
+" search in files, fast
+Bundle 'rking/ag.vim'
+
+" so vim can lauch stuff asynchronously
+Bundle 'tpope/vim-dispatch'
+
+" YouCompleteMe
+Bundle 'Valloric/YouCompleteMe'
+
+
+" Afficher les numéros de ligne
+:set nu
+set background=dark
+colorscheme Tomorrow-Night-Eighties
+" Activer la recherche incrémentale
+:set incsearch
+" La recherche ne tient pas compte de la casse
+:set ignorecase
+" La recherche ne tient pas compte de la casse sauf s'il y a une (ou
+" plusieurs) majuscules
+:set smartcase
+" Activer la coloration syntaxique
+:syntax on
+" Transformer les TABs en espaces
+:set expandtab
+" Un TAB = 4 espaces
+:set tabstop=4
+" Décale de 4 espaces quand on utilise << ou >>
+:set shiftwidth=4
+" Activer la reconnaissance du type de fichier
+:filetype on
+" Utliser les plugins spécifiques à chaque type de fichier
+:filetype plugin on
+" Utliser l'indentation spécifique à chaque type de fichier
+:filetype plugin indent on
+" Activer l'indentation automatique
+:set autoindent
+" Mettre en surbrillance les résultats de recherche
+:set hlsearch
+" Faire en sorte que backspace efface le caractère précédent
+:set bs=2
+
+:set cursorline
+:set cursorcolumn
+
+" Afficher la statusline
+:set laststatus=2
+
+" Enable indent folding
+:set foldenable
+:set foldmethod=syntax
+
+" Set space to toggle a fold
+:nnoremap <space> za
+:nnoremap <S-space> zR
+
+" Cacher le menu et la barre d'outils
+:set guioptions-=T
+:set guioptions-=m
+:set guioptions-=r
+:set guioptions-=R
+:set guioptions-=l
+:set guioptions-=L
+
+" Folding pour php
+:let php_folding = 1
+
+" Folding pour xml
+let g:xml_syntax_folding=1
+
+" Tous les folds sont dépliés par défaut
+:set foldlevel=42
+
+" Mettre la fenêtre à une taille raisonnable
+:set lines=65 columns=120
+
+
+set ofu=syntaxcomplete#Complete
+
+set encoding=utf8
+
+set spelllang=fr
+
+:au BufRead *.asm :copen
+:au BufRead *.asm :wincmd p
+:au BufRead *.asm :set filetype=asm68k
+
+:au BufEnter *.proj :set filetype=xml
+
+set nospell
+
+
+" TODO: do this only for .asm files
+":set makeprg=pceas\ demo.asm
+
+:command! Run !start mednafen demo.pce
+
+:nmap <F4> :w<CR>:make<CR>
+:nmap <F5> :!start mednafen demo.pce<CR>
+:nmap <F6> :!start "C:\Program Files (x86)\Ootake\Ootake.exe" demo.pce<CR>
+:nmap <F7> :!start sgx.cmd<CR>
+
+:nmap <A-t> :TagbarToggle<CR>
+:nmap <F11> :!start ctags -R .<CR>
+:nmap <F12> :YcmCompleter GoToDefinition<CR>
+
+" switch between .h and .cpp file
+map <leader>gh :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
+
+":nmap <F7> :%s/<c-r>=expand("<cword>")<cr>//gn<CR>
+
+":au BufEnter *demo.asm :copen
+
+" exit if the quickfix windows is the last
+au BufEnter * call MyLastWindow()
+function! MyLastWindow()
+  " if the window is quickfix go on
+  if &buftype=="quickfix"
+    " if this window is last on screen quit without warning
+    if winbufnr(2) == -1
+      quit!
+    endif
+  endif
+endfunction
+
+:nmap <leader>c :%s/\r//<CR>:%s/\/\//$$/g<CR>:%s/\$\$\n;/$$/g<CR>
+:nmap <leader>c2 :%s/\/\//$$/g<CR>:%s/\$\$\n;/$$/g<CR>
+:nmap <leader>guid m'ci"<C-R>=matchstr(system('"C:\\Program Files\\Microsoft SDKs\\Windows\\v6.0A\\Bin\\x64\\Uuidgen.Exe"'), "[^\n\r]*")<CR><Esc>
+:nmap <leader>date m'ci"<C-R>=strftime("%Y-%m-%d %H:%M:%S")<CR><Esc>
+:nmap <leader>a mZggyG'Z
+
+
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+:nmap <A-l> :NERDTreeToggle<CR>
+
+" copy current file path + name to clipboard
+:nmap <leader>gy :let @* = expand("%:p")<CR>
+
+
+set wildignore+=*.o,*.obj,*.exe,*.dll,packages/**,obj/**,*.vs*,*.log
+
+:nmap <leader>f :MBEFocus<CR>
+
+:command! Max :set lines=999 columns=999
+
+":nmap t gj
+":nmap n gk
+":nmap s l
+
+:nmap <leader>h :set hls!<CR>
+
+let g:matchparen_insert_timeout=5
+
+:nnoremap n nzz
+
+"
+" PLUGINS CONFIG
+"
+
+" airline
+let g:airline_theme = 'powerlineish'
+let g:airline_powerline_fonts = 0
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+
+" ctrlp
+:map <C-i> :CtrlPTag<CR>
+
+" supertab
+let g:SuperTabMappingForward = '<s-c-space>'
+let g:SuperTabMappingBackward = '<c-space>'
+
+" syntastic
+let g:syntastic_python_checkers=['pyflakes']
+let g:syntastic_javascript_checkers=['jshint']
+let g:syntastic_check_on_open=1 "check files on open, not just save
+
+" jedi
+"autocmd FileType python setlocal completeopt-=preview"
+
+" ag.vim
+let g:agprg="C:\\Users\\mth\\Tools\\ag\\ag.exe --column"
+
+" YouCompleteMe
+let g:ycm_collect_identifiers_from_tags_files = 0
+let g:ycm_server_keep_logfiles = 1
+"let g:ycm_server_log_level = 'debug'
+
+" MiniBufExpl
+:command! BD :MBEbd
+
