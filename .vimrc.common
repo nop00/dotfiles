@@ -120,10 +120,6 @@ let g:xml_syntax_folding=1
 " Tous les folds sont dépliés par défaut
 :set foldlevel=42
 
-" Mettre la fenêtre à une taille raisonnable
-:set lines=65 columns=120
-
-
 set ofu=syntaxcomplete#Complete
 
 set encoding=utf8
@@ -192,6 +188,9 @@ set wildignore+=*.o,*.obj,*.exe,*.dll,packages/**,obj/**,*.vs*,*.log
 :nmap <leader>f :MBEFocus<CR>
 
 :command! Max :set lines=999 columns=999
+
+:nmap j gj
+:nmap k gk
 
 ":nmap t gj
 ":nmap n gk
