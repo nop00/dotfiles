@@ -66,6 +66,10 @@ Bundle 'mattn/emmet-vim'
 " UltiSnips
 Bundle 'SirVer/ultisnips'
 
+" delimitMate
+Bundle 'Raimondi/delimitMate'
+
+
 " Afficher les numéros de ligne
 :set nu
 set background=dark
@@ -255,3 +259,5 @@ autocmd InsertLeave * if pumvisible() == 0 && bufname("%") != "[Command Line]"|p
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+
+
