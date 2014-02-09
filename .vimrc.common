@@ -63,6 +63,9 @@ Bundle 'matchit.zip'
 " Emmet
 Bundle 'mattn/emmet-vim'
 
+" UltiSnips
+Bundle 'SirVer/ultisnips'
+
 " Afficher les numéros de ligne
 :set nu
 set background=dark
@@ -229,7 +232,7 @@ let g:agprg="C:\\Users\\mth\\Tools\\ag\\ag.exe --column"
 
 " YouCompleteMe
 let g:ycm_collect_identifiers_from_tags_files = 0
-let g:ycm_server_keep_logfiles = 1
+"let g:ycm_server_keep_logfiles = 1
 "let g:ycm_server_log_level = 'debug'
 
 " MiniBufExpl
@@ -240,5 +243,15 @@ let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
 
 " completion
-" do not show the preview window
-set completeopt-=preview
+" hide preview window after use
+" (from http://stackoverflow.com/questions/3105307/how-do-you-automatically-remove-the-preview-window-after-autocompletion-in-vim)
+autocmd CursorMovedI * if pumvisible() == 0 && bufname("%") != "[Command Line]"|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0 && bufname("%") != "[Command Line]"|pclose|endif
+
+" css
+:au BufEnter *.css :set omnifunc=csscomplete#CompleteCSS
+
+"ultisnips
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
