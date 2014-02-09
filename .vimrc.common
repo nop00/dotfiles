@@ -30,7 +30,8 @@ Bundle 'AutoTag'
 Bundle 'Tagbar'
 
 " CSS
-Bundle 'skammer/vim-css-color'
+" commented out because very slow on html files
+"Bundle 'ap/vim-css-color'
 Bundle 'hail2u/vim-css3-syntax'
 Bundle 'groenewege/vim-less'
 
@@ -58,6 +59,9 @@ Bundle 'Valloric/YouCompleteMe'
 
 " Enhance % matching
 Bundle 'matchit.zip'
+
+" Emmet
+Bundle 'mattn/emmet-vim'
 
 " Afficher les numéros de ligne
 :set nu
@@ -128,24 +132,18 @@ set encoding=utf8
 
 set spelllang=fr
 
-:au BufRead *.asm :copen
-:au BufRead *.asm :wincmd p
-:au BufRead *.asm :set filetype=asm68k
-
 :au BufEnter *.proj :set filetype=xml
 
 set nospell
 
 
-" TODO: do this only for .asm files
-":set makeprg=pceas\ demo.asm
-
-:command! Run !start mednafen demo.pce
-
-:nmap <F4> :w<CR>:make<CR>
-:nmap <F5> :!start mednafen demo.pce<CR>
-:nmap <F6> :!start "C:\Program Files (x86)\Ootake\Ootake.exe" demo.pce<CR>
-:nmap <F7> :!start sgx.cmd<CR>
+" asm stuff
+":au BufRead *.asm :copen
+":au BufRead *.asm :wincmd p
+:au BufRead *.asm :set filetype=asm68k
+:au BufRead *.asm :set makeprg=pceas\ demo.asm
+:au BufRead *.asm :nmap <F4> :w<CR>:make<CR>
+:au BufRead *.asm :nmap <F5> :!mednafen demo.pce<CR>
 
 :nmap <A-t> :TagbarToggle<CR>
 :nmap <F11> :!start ctags -R .<CR>
@@ -240,3 +238,10 @@ let g:ycm_server_keep_logfiles = 1
 " MiniBufExpl
 :command! BD :MBEbd
 
+" Emmet
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
+
+" completion
+" do not show the preview window
+set completeopt-=preview
