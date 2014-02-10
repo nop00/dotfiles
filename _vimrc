@@ -34,9 +34,8 @@ call vundle#rc("C:\\Users\\mth\\vimfiles\\bundle")
 :au BufEnter *Perforce/Main/ICE/* :set tags=D:/Perforce/Main/ICE/tags
 :au BufEnter *Perforce/Main/ICE/*/*.js :set tags=
 :au BufEnter *Perforce/Branches/Release/6.0.12.Main/ICE/* :set tags=D:/Perforce/Branches/Release/6.0.12.Main/ICE/tags
+:au BufEnter *Perforce/Branches/BeyondHD/ICE/* :set tags=D:/Perforce/Branches/BeyondHD/ICE/tags
 :au BufEnter *Perforce/Main/Farm/Cluster/HeadNode/* :set tags=D:/Perforce/Main/Farm/Cluster/HeadNode/tags
-
-:au BufEnter *Perforce/Branches/Main_Five/ICE/* :set tags=D:/Perforce/Branches/Main_Five/ICE/tags
 
 " Perforce stuff
 " Set a buffer-local variable to the perforce path, if this file is under the perforce root.
