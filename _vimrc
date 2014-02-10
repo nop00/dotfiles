@@ -1,7 +1,7 @@
 set rtp+=C:\Users\mth\vimfiles\bundle\vundle
 call vundle#rc("C:\\Users\\mth\\vimfiles\\bundle")
 
-:source C:\Users\mth\.vimrc.common
+:source C:\Users\mth\dotfiles\.vimrc.common
 
 " Mettre la fenêtre à une taille raisonnable
 :set lines=65 columns=120
