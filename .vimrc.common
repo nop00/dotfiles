@@ -209,6 +209,9 @@ let g:matchparen_insert_timeout=5
 
 :nnoremap n nzz
 
+" so the undo history & co are kept when switching buffers
+:set hidden
+
 "
 " PLUGINS CONFIG
 "
