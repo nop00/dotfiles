@@ -1,79 +1,96 @@
 set nocompatible               " be iMproved
 filetype off                   " required!
 
+set rtp+=$HOME/vimfiles/bundle/Vundle.vim
+call vundle#begin('$USERPROFILE/vimfiles/bundle/')
+
 " let Vundle manage Vundle
 " required! 
-Bundle 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
 
 "search in files/tags/MRU
-Bundle 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 "buffer explorer
-Bundle 'techlivezheng/vim-plugin-minibufexpl'
+Plugin 'techlivezheng/vim-plugin-minibufexpl'
 
 " commenting/uncommenting easily
-Bundle 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdcommenter'
 " file explorer
-Bundle 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 " fancy status bar
-Bundle 'bling/vim-airline'
+Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 " use <tab> (or something else) to control completion
-"Bundle 'tsaleh/vim-supertab'
+"Plugin 'tsaleh/vim-supertab'
 " surround stuff with quotes, brackets, etc
-Bundle 'surround.vim'
+Plugin 'surround.vim'
 " syntax checker
-Bundle 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 
 " ctags stuff
 " Updates entries in a tags file automatically when saving
-Bundle 'AutoTag'
+Plugin 'AutoTag'
 " display tags for the current file in a sidebar
-Bundle 'Tagbar'
+Plugin 'Tagbar'
 
 " CSS
 " commented out because very slow on html files
-"Bundle 'ap/vim-css-color'
-Bundle 'hail2u/vim-css3-syntax'
-Bundle 'groenewege/vim-less'
+"Plugin 'ap/vim-css-color'
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'groenewege/vim-less'
 
 " Python
-"Bundle 'davidhalter/jedi-vim'
+"Plugin 'davidhalter/jedi-vim'
 
 " Javascript
-Bundle 'jelera/vim-javascript-syntax'
-Bundle 'pangloss/vim-javascript'
-Bundle 'nathanaelkane/vim-indent-guides'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'pangloss/vim-javascript'
+Plugin 'nathanaelkane/vim-indent-guides'
 " javascript completion
-Bundle 'marijnh/tern_for_vim'
+"Plugin 'marijnh/tern_for_vim'
 
 " color scheme
-Bundle 'chriskempson/vim-tomorrow-theme'
-
-" search in files, fast
-Bundle 'rking/ag.vim'
+Plugin 'chriskempson/vim-tomorrow-theme'
+Plugin 'https://github.com/morhetz/gruvbox'
 
 " so vim can lauch stuff asynchronously
-Bundle 'tpope/vim-dispatch'
+Plugin 'tpope/vim-dispatch'
 
 " YouCompleteMe
-Bundle 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 
 " Enhance % matching
-Bundle 'matchit.zip'
+Plugin 'matchit.zip'
 
 " Emmet
-Bundle 'mattn/emmet-vim'
+Plugin 'mattn/emmet-vim'
 
 " UltiSnips
-Bundle 'SirVer/ultisnips'
+Plugin 'SirVer/ultisnips'
 
 " delimitMate
-Bundle 'Raimondi/delimitMate'
+Plugin 'Raimondi/delimitMate'
 
+" ruby stuff
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'tpope/vim-endwise'
+
+" wrapper for file searches, gets us a nice results formatting
+Plugin 'mileszs/ack.vim'
+
+" twig syntax highlighting
+Plugin 'lumiliet/vim-twig'
+
+" Riot's tag files highlighting
+Plugin 'ryym/vim-riot'
+
+call vundle#end()
 
 " Afficher les numéros de ligne
 :set nu
 set background=dark
-colorscheme Tomorrow-Night-Eighties
+" colorscheme Tomorrow-Night-Eighties
+colorscheme gruvbox
 " Activer la recherche incrémentale
 :set incsearch
 " La recherche ne tient pas compte de la casse
@@ -153,17 +170,14 @@ set nospell
 :au BufRead *.asm :nmap <F5> :!mednafen demo.pce<CR>
 
 :nmap <A-t> :TagbarToggle<CR>
+:nmap <A-l> :NERDTreeToggle<CR>
 :nmap <F11> :!start ctags -R .<CR>
-:nmap <F12> :YcmCompleter GoToDefinition<CR>
+:nmap <F12> <C-]>
 
 " switch between .h and .cpp file
 map <leader>gh :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 
-":nmap <F7> :%s/<c-r>=expand("<cword>")<cr>//gn<CR>
-
-":au BufEnter *demo.asm :copen
-
-" exit if the quickfix windows is the last
+" exit if the quickfix window is the last
 au BufEnter * call MyLastWindow()
 function! MyLastWindow()
   " if the window is quickfix go on
@@ -175,20 +189,13 @@ function! MyLastWindow()
   endif
 endfunction
 
-:nmap <leader>c :%s/\r//<CR>:%s/\/\//$$/g<CR>:%s/\$\$\n;/$$/g<CR>
-:nmap <leader>c2 :%s/\/\//$$/g<CR>:%s/\$\$\n;/$$/g<CR>
-:nmap <leader>guid m'ci"<C-R>=matchstr(system('"C:\\Program Files\\Microsoft SDKs\\Windows\\v6.0A\\Bin\\x64\\Uuidgen.Exe"'), "[^\n\r]*")<CR><Esc>
-:nmap <leader>date m'ci"<C-R>=strftime("%Y-%m-%d %H:%M:%S")<CR><Esc>
 :nmap <leader>a mZggyG'Z
-
 
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
-:nmap <A-l> :NERDTreeToggle<CR>
 
 " copy current file path + name to clipboard
 :nmap <leader>gy :let @* = expand("%:p")<CR>
-
 
 set wildignore+=*.o,*.obj,*.exe,*.dll,packages/**,obj/**,*.vs*,*.log
 
@@ -223,8 +230,8 @@ let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 
 " supertab
-let g:SuperTabMappingForward = '<s-c-space>'
-let g:SuperTabMappingBackward = '<c-space>'
+"let g:SuperTabMappingForward = '<s-c-space>'
+"let g:SuperTabMappingBackward = '<c-space>'
 
 " syntastic
 let g:syntastic_python_checkers=['pyflakes']
@@ -234,11 +241,8 @@ let g:syntastic_check_on_open=1 "check files on open, not just save
 " jedi
 "autocmd FileType python setlocal completeopt-=preview"
 
-" ag.vim
-let g:agprg="C:\\Users\\mth\\Tools\\ag\\ag.exe --column"
-
 " YouCompleteMe
-let g:ycm_collect_identifiers_from_tags_files = 0
+"let g:ycm_collect_identifiers_from_tags_files = 0
 "let g:ycm_server_keep_logfiles = 1
 "let g:ycm_server_log_level = 'debug'
 
@@ -266,4 +270,10 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 " NERDTree
 :nmap <leader>e :NERDTreeToggle<cr>
 
+" Ack
+let g:ackprg = 'rg --vimgrep --no-heading'
+
+" Projects shortcuts
+:command! Belote :cd ~/projects/belote-net
+:command! BeloteOld :cd ~/projects/beloteNet
 
