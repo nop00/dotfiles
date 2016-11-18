@@ -45,9 +45,7 @@ Plugin 'groenewege/vim-less'
 " Javascript
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
-Plugin 'nathanaelkane/vim-indent-guides'
-" javascript completion
-"Plugin 'marijnh/tern_for_vim'
+Plugin 'jason0x43/vim-js-indent'
 
 " color scheme
 Plugin 'chriskempson/vim-tomorrow-theme'
@@ -67,13 +65,14 @@ Plugin 'mattn/emmet-vim'
 
 " UltiSnips
 Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 
 " delimitMate
 Plugin 'Raimondi/delimitMate'
 
 " ruby stuff
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'tpope/vim-endwise'
+"Plugin 'vim-ruby/vim-ruby'
+"Plugin 'tpope/vim-endwise'
 
 " wrapper for file searches, gets us a nice results formatting
 Plugin 'mileszs/ack.vim'
@@ -84,6 +83,16 @@ Plugin 'lumiliet/vim-twig'
 " Riot's tag files highlighting
 Plugin 'ryym/vim-riot'
 
+" Typescript syntax highlighting
+Plugin 'leafgarland/typescript-vim'
+
+" Typescript completion, used by syntastic to check .ts syntax
+Plugin 'Quramy/tsuquyomi'
+" required by tsuquyomi
+Plugin 'Shougo/vimproc.vim'
+
+" Code completion
+Plugin 'valloric/YouCompleteMe'
 call vundle#end()
 
 " Afficher les numéros de ligne
@@ -237,11 +246,14 @@ let g:airline_right_sep = ''
 let g:syntastic_python_checkers=['pyflakes']
 let g:syntastic_javascript_checkers=['jshint']
 let g:syntastic_check_on_open=1 "check files on open, not just save
+let g:tsuquyomi_disable_quickfix = 1
+let g:syntastic_typescript_checkers = ['tsuquyomi'] " You shouldn't use 'tsc' checker.
 
 " jedi
 "autocmd FileType python setlocal completeopt-=preview"
 
 " YouCompleteMe
+let g:ycm_complete_in_comments = 1
 "let g:ycm_collect_identifiers_from_tags_files = 0
 "let g:ycm_server_keep_logfiles = 1
 "let g:ycm_server_log_level = 'debug'
