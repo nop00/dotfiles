@@ -219,6 +219,8 @@ set wildignore+=*.o,*.obj,*.exe,*.dll,packages/**,obj/**,*.vs*,*.log
 ":nmap n gk
 ":nmap s l
 
+:nmap <C-S-B> :make<CR>
+
 :nmap <leader>h :set hls!<CR>
 
 let g:matchparen_insert_timeout=5
@@ -257,6 +259,10 @@ let g:ycm_complete_in_comments = 1
 "let g:ycm_collect_identifiers_from_tags_files = 0
 "let g:ycm_server_keep_logfiles = 1
 "let g:ycm_server_log_level = 'debug'
+
+" Launch the Typescript compiler without any options instead
+" of typescript-vim's default 'tsc $* %' so it uses tsconfig.json
+autocmd FileType typescript :set makeprg=tsc
 
 " MiniBufExpl
 :command! BD :MBEbd
