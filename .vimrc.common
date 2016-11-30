@@ -1,7 +1,7 @@
 set nocompatible               " be iMproved
 filetype off                   " required!
 
-set rtp+=$HOME/vimfiles/bundle/Vundle.vim
+set rtp+=$USERPROFILE/vimfiles/bundle/Vundle.vim
 call vundle#begin('$USERPROFILE/vimfiles/bundle/')
 
 " let Vundle manage Vundle
@@ -20,8 +20,6 @@ Plugin 'scrooloose/nerdtree'
 " fancy status bar
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-" use <tab> (or something else) to control completion
-"Plugin 'tsaleh/vim-supertab'
 " surround stuff with quotes, brackets, etc
 Plugin 'surround.vim'
 " syntax checker
@@ -39,9 +37,6 @@ Plugin 'Tagbar'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'groenewege/vim-less'
 
-" Python
-"Plugin 'davidhalter/jedi-vim'
-
 " Javascript
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
@@ -54,9 +49,6 @@ Plugin 'https://github.com/morhetz/gruvbox'
 " so vim can lauch stuff asynchronously
 Plugin 'tpope/vim-dispatch'
 
-" YouCompleteMe
-"Plugin 'Valloric/YouCompleteMe'
-
 " Enhance % matching
 Plugin 'matchit.zip'
 
@@ -68,7 +60,10 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 
 " delimitMate
-Plugin 'Raimondi/delimitMate'
+"Plugin 'Raimondi/delimitMate'
+
+"auto pairs
+Plugin 'jiangmiao/auto-pairs'
 
 " ruby stuff
 "Plugin 'vim-ruby/vim-ruby'
@@ -93,6 +88,10 @@ Plugin 'Shougo/vimproc.vim'
 
 " Code completion
 Plugin 'valloric/YouCompleteMe'
+
+" Git handling
+Plugin 'tpope/vim-fugitive'
+
 call vundle#end()
 
 " Afficher les numéros de ligne
@@ -219,8 +218,6 @@ set wildignore+=*.o,*.obj,*.exe,*.dll,packages/**,obj/**,*.vs*,*.log
 ":nmap n gk
 ":nmap s l
 
-:nmap <C-S-B> :make<CR>
-
 :nmap <leader>h :set hls!<CR>
 
 let g:matchparen_insert_timeout=5
@@ -240,16 +237,15 @@ let g:airline_powerline_fonts = 0
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 
-" supertab
-"let g:SuperTabMappingForward = '<s-c-space>'
-"let g:SuperTabMappingBackward = '<c-space>'
+" ctrlp
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|bower_components|dist|bin|obj)|(\.(swp|git|hg))$'
 
 " syntastic
 let g:syntastic_python_checkers=['pyflakes']
 let g:syntastic_javascript_checkers=['jshint']
 let g:syntastic_check_on_open=1 "check files on open, not just save
 let g:tsuquyomi_disable_quickfix = 1
-let g:syntastic_typescript_checkers = ['tsuquyomi'] " You shouldn't use 'tsc' checker.
+let g:syntastic_typescript_checkers = ['tsuquyomi', 'tslint'] " You shouldn't use 'tsc' checker.
 
 " jedi
 "autocmd FileType python setlocal completeopt-=preview"
@@ -290,8 +286,16 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 " Ack
 let g:ackprg = 'rg --vimgrep --no-heading'
+" perform search in the background
+let g:ack_use_dispatch = 1
+" auto-close wuickfix window when going to a file from the list
+let g:ack_autoclose = 1
+nnoremap <Leader>a :Ack!<Space>
+nnoremap <Leader>as :copen<cr>
+nnoremap <Leader>ah :cclose<cr>
 
 " Projects shortcuts
 :command! Belote :cd ~/projects/belote-net
 :command! BeloteOld :cd ~/projects/beloteNet
+:command! GrandsLoups :cd ~/projects/les-grands-loups
 
