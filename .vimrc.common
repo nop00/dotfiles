@@ -247,6 +247,7 @@ let g:syntastic_typescript_checkers = ['tsuquyomi', 'tslint'] " You shouldn't us
 
 " Tsuquyomi
 :nmap <leader>i :TsuImport<cr>
+:nmap <S-F12> :TsuReferences<cr>
 
 " jedi
 "autocmd FileType python setlocal completeopt-=preview"
