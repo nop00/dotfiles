@@ -22,6 +22,8 @@ Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 " surround stuff with quotes, brackets, etc
 Plugin 'surround.vim'
+" enable '.' support for surround
+Plugin 'repeat.vim'
 " syntax checker
 Plugin 'scrooloose/syntastic'
 
@@ -50,7 +52,8 @@ Plugin 'https://github.com/morhetz/gruvbox'
 Plugin 'tpope/vim-dispatch'
 
 " Enhance % matching
-Plugin 'matchit.zip'
+"Plugin 'matchit.zip'
+Plugin 'othree/xml.vim'
 
 " Emmet
 Plugin 'mattn/emmet-vim'
@@ -92,6 +95,8 @@ Plugin 'valloric/YouCompleteMe'
 " Git handling
 Plugin 'tpope/vim-fugitive'
 
+" documentation comment generator for JavaScript/TypeScript
+Plugin 'heavenshell/vim-jsdoc'
 call vundle#end()
 
 " Afficher les numéros de ligne
@@ -186,6 +191,10 @@ set nospell
 map <leader>gh :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 " switch between .ts and .html file
 map <leader>gt :e %:p:s,.html$,.X123X,:s,.ts$,.html,:s,.X123X$,.ts,<CR>
+" switch between .ts and .css file
+map <leader>gc :e %:p:s,.css$,.X123X,:s,.ts$,.css,:s,.X123X$,.ts,<CR>
+" switch between .ts and .scss file
+map <leader>gs :e %:p:s,.scss$,.X123X,:s,.ts$,.scss,:s,.X123X$,.ts,<CR>
 
 " exit if the quickfix window is the last
 au BufEnter * call MyLastWindow()
@@ -285,6 +294,8 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 " NERDTree
 :nmap <leader>e :NERDTreeToggle<cr>
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
 
 " Ack
 let g:ackprg = 'rg --vimgrep --no-heading'
@@ -295,6 +306,10 @@ let g:ack_autoclose = 1
 nnoremap <Leader>a :Ack!<Space>
 nnoremap <Leader>as :copen<cr>
 nnoremap <Leader>ah :cclose<cr>
+
+" JSDoc.vim
+nnoremap <Leader>d :JsDoc<cr>
+
 
 " Projects shortcuts
 :command! Belote :cd ~/projects/belote-net
