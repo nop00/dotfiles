@@ -1,5 +1,8 @@
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set nocompatible               " be iMproved
+filetype off                   " required!
+
+set rtp+=$HOME/.vim/bundle/Vundle.vim
+call vundle#begin('$HOME/.vim/bundle/')
 
 :source ~/dotfiles/.vimrc.common
 

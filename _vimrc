@@ -1,4 +1,7 @@
-﻿set rtp+=$USERPROFILE/vimfiles/bundle/Vundle.vim
+﻿set nocompatible               " be iMproved
+filetype off                   " required!
+
+set rtp+=$USERPROFILE/vimfiles/bundle/Vundle.vim
 call vundle#begin('$USERPROFILE/vimfiles/bundle/')
 
 :source $USERPROFILE\dotfiles\.vimrc.common
