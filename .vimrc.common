@@ -20,6 +20,7 @@ Plugin 'surround.vim'
 Plugin 'repeat.vim'
 " syntax checker
 Plugin 'scrooloose/syntastic'
+" Plugin 'neomake/neomake'
 
 " ctags stuff
 " Updates entries in a tags file automatically when saving
@@ -53,8 +54,8 @@ Plugin 'othree/xml.vim'
 Plugin 'mattn/emmet-vim'
 
 " UltiSnips
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+" Plugin 'SirVer/ultisnips'
+" Plugin 'honza/vim-snippets'
 
 " delimitMate
 "Plugin 'Raimondi/delimitMate'
@@ -70,18 +71,16 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'mileszs/ack.vim'
 
 " twig syntax highlighting
-Plugin 'lumiliet/vim-twig'
+" Plugin 'lumiliet/vim-twig'
 
 " Riot's tag files highlighting
 Plugin 'ryym/vim-riot'
 
 " Typescript syntax highlighting
-Plugin 'leafgarland/typescript-vim'
+Plugin 'HerringtonDarkholme/yats.vim'
 
 " Typescript completion, used by syntastic to check .ts syntax
 Plugin 'Quramy/tsuquyomi'
-" required by tsuquyomi
-Plugin 'Shougo/vimproc.vim'
 
 " Code completion
 Plugin 'valloric/YouCompleteMe'
@@ -89,8 +88,6 @@ Plugin 'valloric/YouCompleteMe'
 " Git handling
 Plugin 'tpope/vim-fugitive'
 
-" documentation comment generator for JavaScript/TypeScript
-Plugin 'heavenshell/vim-jsdoc'
 call vundle#end()
 
 " Afficher les numéros de ligne
@@ -240,15 +237,21 @@ let g:airline_right_sep = ''
 
 " ctrlp
 let g:ctrlp_custom_ignore = '\v[\/](node_modules|bower_components|dist|bin|obj)|(\.(swp|git|hg))$'
+let g:ctrlp_open_multiple_files = '1r'
 
 " syntastic
 let g:syntastic_python_checkers=['pyflakes']
 let g:syntastic_javascript_checkers=['jshint']
 let g:syntastic_check_on_open=1 "check files on open, not just save
-let g:tsuquyomi_disable_quickfix = 1
 let g:syntastic_typescript_checkers = ['tsuquyomi', 'tslint'] " You shouldn't use 'tsc' checker.
 
+" neomake (call on read and write file)
+" autocmd! BufReadPost * Neomake
+" autocmd! BufWritePost * Neomake
+" let g:neomake_typescript_enabled_makers = ['tsc', 'tslint']
+
 " Tsuquyomi
+let g:tsuquyomi_disable_quickfix = 1
 :nmap <leader>i :TsuImport<cr>
 :nmap <S-F12> :TsuReferences<cr>
 
@@ -267,6 +270,8 @@ autocmd FileType typescript :set makeprg=tsc
 
 " MiniBufExpl
 :command! BD :MBEbd
+let g:miniBufExplorerAutoStart = 1
+let g:miniBufExplBuffersNeeded = 0
 
 " Emmet
 let g:user_emmet_install_global = 0
@@ -295,8 +300,11 @@ let g:NERDSpaceDelims = 1
 let g:ackprg = 'rg --vimgrep --no-heading'
 " perform search in the background
 let g:ack_use_dispatch = 1
-" auto-close wuickfix window when going to a file from the list
+" auto-close quickfix window when going to a file from the list
 let g:ack_autoclose = 1
+" highlight search term
+let g:ackhighlight = 1
+
 nnoremap <Leader>a :Ack!<Space>
 nnoremap <Leader>as :copen<cr>
 nnoremap <Leader>ah :cclose<cr>
@@ -304,9 +312,18 @@ nnoremap <Leader>ah :cclose<cr>
 " JSDoc.vim
 nnoremap <Leader>d :JsDoc<cr>
 
+" autopairs
+" remove this shortcut, because it's mapped to "â", which makes me unable to
+" write "tâches" ^_^
+let g:AutoPairsShortcutBackInsert = ''
 
 " Projects shortcuts
 :command! Belote :cd ~/projects/belote-net
 :command! BeloteOld :cd ~/projects/beloteNet
 :command! GrandsLoups :cd ~/projects/les-grands-loups
+
+" use tabs when working on Gandalf
+autocmd BufEnter */Avr-info/* :set noexpandtab
+autocmd BufEnter */Avr-info/* :let g:tsuquyomi_single_quote_import = 1
+
 
