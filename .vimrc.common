@@ -36,7 +36,7 @@ Plugin 'groenewege/vim-less'
 
 " Javascript
 Plugin 'jelera/vim-javascript-syntax'
-Plugin 'pangloss/vim-javascript'
+" Plugin 'pangloss/vim-javascript'
 Plugin 'jason0x43/vim-js-indent'
 
 " color scheme
@@ -81,6 +81,7 @@ Plugin 'HerringtonDarkholme/yats.vim'
 
 " Typescript completion, used by syntastic to check .ts syntax
 Plugin 'Quramy/tsuquyomi'
+" Plugin 'Quramy/vim-js-pretty-template' " can't get it to work :(
 
 " Code completion
 Plugin 'valloric/YouCompleteMe'
@@ -254,6 +255,9 @@ let g:syntastic_typescript_checkers = ['tsuquyomi', 'tslint'] " You shouldn't us
 let g:tsuquyomi_disable_quickfix = 1
 :nmap <leader>i :TsuImport<cr>
 :nmap <S-F12> :TsuReferences<cr>
+
+" vim-js-pretty-template
+" autocmd FileType typescript JsPreTmpl html
 
 " jedi
 "autocmd FileType python setlocal completeopt-=preview"
