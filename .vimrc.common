@@ -51,7 +51,7 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'othree/xml.vim'
 
 " Emmet
-Plugin 'mattn/emmet-vim'
+" Plugin 'mattn/emmet-vim'
 
 " UltiSnips
 " Plugin 'SirVer/ultisnips'
@@ -74,10 +74,12 @@ Plugin 'mileszs/ack.vim'
 " Plugin 'lumiliet/vim-twig'
 
 " Riot's tag files highlighting
-Plugin 'ryym/vim-riot'
+" Plugin 'ryym/vim-riot'
 
 " Typescript syntax highlighting
-Plugin 'HerringtonDarkholme/yats.vim'
+" this one gets slow on medium to large files
+" Plugin 'HerringtonDarkholme/yats.vim'
+Plugin 'mkulke/typescript-vim'
 
 " Typescript completion, used by syntastic to check .ts syntax
 Plugin 'Quramy/tsuquyomi'
@@ -278,8 +280,8 @@ let g:miniBufExplorerAutoStart = 1
 let g:miniBufExplBuffersNeeded = 0
 
 " Emmet
-let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
+" let g:user_emmet_install_global = 0
+" autocmd FileType html,css EmmetInstall
 
 " completion
 " hide preview window after use
@@ -317,9 +319,13 @@ nnoremap <Leader>ah :cclose<cr>
 nnoremap <Leader>d :JsDoc<cr>
 
 " autopairs
-" remove this shortcut, because it's mapped to "â", which makes me unable to
-" write "tâches" ^_^
+" remove these shortcuts, because they map to characters with an accent circonflexe (like "â"), which I need when I write in french :)
+" (they map using <M-b> and the like, which strangely resolves to these accented chars)
 let g:AutoPairsShortcutBackInsert = ''
+let g:AutoPairsShortcutToggle = ''
+let g:AutoPairsShortcutFastWrap = ''
+let g:AutoPairsShortcutJump = ''
+let g:AutoPairsMoveCharacter = ''
 
 " Projects shortcuts
 :command! Belote :cd ~/projects/belote-net
@@ -329,5 +335,5 @@ let g:AutoPairsShortcutBackInsert = ''
 " use tabs when working on Gandalf
 autocmd BufEnter */Avr-info/* :set noexpandtab
 autocmd BufEnter */Avr-info/* :let g:tsuquyomi_single_quote_import = 1
-
+autocmd BufWritePre */Avr-Info/* %s/\s\+$//e
 
