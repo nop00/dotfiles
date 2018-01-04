@@ -9,7 +9,7 @@ call vundle#begin('$USERPROFILE/vimfiles/bundle/')
 " Mettre la fenêtre à une taille raisonnable
 :set lines=65 columns=120
 
-:set gfn=ProggySquareTT:h12:cANSI
+:set gfn=ProggySquareTTSZ:h12:cANSI
 
 " Utiliser le presse-papiers système
 :set clipboard=unnamed
