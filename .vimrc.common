@@ -83,6 +83,8 @@ Plugin 'mkulke/typescript-vim'
 
 " Typescript completion, used by syntastic to check .ts syntax
 Plugin 'Quramy/tsuquyomi'
+" required by tsuquyomi
+" Plugin 'Shougo/vimproc.vim'
 " Plugin 'Quramy/vim-js-pretty-template' " can't get it to work :(
 
 " Code completion
@@ -235,9 +237,9 @@ let g:matchparen_insert_timeout=5
 
 " airline
 let g:airline_theme = 'powerlineish'
-let g:airline_powerline_fonts = 0
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
+let g:airline_powerline_fonts = 1
+" let g:airline_left_sep = ''
+" let g:airline_right_sep = ''
 
 " ctrlp
 let g:ctrlp_custom_ignore = '\v[\/](node_modules|bower_components|dist|bin|obj)|(\.(swp|git|hg))$'
