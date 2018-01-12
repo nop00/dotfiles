@@ -98,6 +98,7 @@ call vundle#end()
 set background=dark
 " colorscheme Tomorrow-Night-Eighties
 colorscheme gruvbox
+let g:gruvbox_italic = 0
 " Activer la recherche incrémentale
 :set incsearch
 " La recherche ne tient pas compte de la casse
