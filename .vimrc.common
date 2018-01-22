@@ -330,6 +330,17 @@ let g:AutoPairsShortcutFastWrap = ''
 let g:AutoPairsShortcutJump = ''
 let g:AutoPairsMoveCharacter = ''
 
+" make whitespace visible
+set listchars=tab:>-,trail:·
+set list
+
+" sane line joins (intelligently join comment lines, for example)
+set formatoptions+=j
+
+" highlight trailing whitespace
+match ErrorMsg '\s\+$'
+
+
 " Projects shortcuts
 :command! Belote :cd ~/projects/belote-net
 :command! BeloteOld :cd ~/projects/beloteNet
