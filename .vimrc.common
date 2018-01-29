@@ -96,6 +96,9 @@ Plugin 'tpope/vim-fugitive'
 " Distraction-free writing
 Plugin 'junegunn/goyo.vim'
 
+" Highlight yanked text
+Plugin 'machakann/vim-highlightedyank'
+
 call vundle#end()
 
 " Afficher les numéros de ligne
