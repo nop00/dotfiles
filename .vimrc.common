@@ -250,6 +250,7 @@ let g:airline_powerline_fonts = 1
 " ctrlp
 let g:ctrlp_custom_ignore = '\v[\/](node_modules|bower_components|dist|bin|obj)|(\.(swp|git|hg))$'
 let g:ctrlp_open_multiple_files = '1r'
+let g:ctrlp_by_filename = 1
 
 " syntastic
 " let g:syntastic_python_checkers=['pyflakes']
